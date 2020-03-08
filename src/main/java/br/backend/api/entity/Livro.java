@@ -30,9 +30,7 @@ public class Livro implements Serializable{
 	
 	public Livro() {
 		
-	}
-	
-	
+	}	
 	
 	public Livro(String titulo, String autor, String ano, String categoria, String editora) {
 		super();
@@ -43,8 +41,6 @@ public class Livro implements Serializable{
 		this.editora = editora;
 		
 	}
-
-
 
 	public Long getId() {
 		return id;

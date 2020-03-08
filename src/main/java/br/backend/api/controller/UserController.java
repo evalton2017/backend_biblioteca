@@ -33,11 +33,6 @@ public class UserController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<User> salvar(@Valid @RequestBody User user) throws ExceptionErros {
-		Set<String> telefones = new HashSet<>();
-		telefones.add("619256666");
-		telefones.add("613659999");
-		//User usuario = new User(1L,"Fulano de tal","fulano@gmail.com","123456",telefones);
-		user.getTelefones().addAll(telefones);
 		user = service.salvar(user);
 		return ResponseEntity.ok().body(user);
 		
