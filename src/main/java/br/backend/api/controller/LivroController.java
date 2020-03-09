@@ -39,8 +39,7 @@ public class LivroController {
 	
 	@RequestMapping(value="/{titulo}",method=RequestMethod.GET)
 	public ResponseEntity<List<Livro>> buscarLivro(@PathVariable("titulo") String titulo){
-		List<Livro> livros = service.buscarLivros(titulo);
-		
+		List<Livro> livros = service.buscarLivros(titulo);		
 		return ResponseEntity.ok().body(livros);
 	}
 	
@@ -48,7 +47,7 @@ public class LivroController {
 	public ResponseEntity<Livro> salvar(@RequestBody Livro livro){
 		Livro l = new Livro();
 		System.out.println(livro.getFoto());
-		
+		l = service.salvar(livro);
 		return ResponseEntity.ok().body(l);
 		
 	}
@@ -56,9 +55,16 @@ public class LivroController {
 	@RequestMapping(value="/{foto}",method=RequestMethod.POST)
 	public void upload(@RequestParam("foto") MultipartFile foto) {	
 		String nome = String.valueOf(new Random().nextLong());		
-		System.out.println(foto);		
+		System.out.println(foto);
+
 		disco.salvarFoto(foto);
 		
+	}
+	
+	@RequestMapping(value="/buscar/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Livro> buscarPorId(@PathVariable ("id") String id) throws NumberFormatException, Exception{
+		Livro livro = service.buscarPorId(Long.parseLong(id));
+		return ResponseEntity.ok().body(livro);
 	}
 	
 	
