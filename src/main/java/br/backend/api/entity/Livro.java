@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class Livro implements Serializable{
 
 	private static final long serialVersionUID = 1L;
