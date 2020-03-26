@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -58,6 +59,8 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name="perfil", nullable = false)
 	private PerfilEnum perfil;
+	@Transient
+	private String ip;
 	
 	public User() {
 		
@@ -118,7 +121,14 @@ public class User implements Serializable {
 		this.perfil = perfil;
 	}
 	
-	
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 
 	@Override
 	public int hashCode() {

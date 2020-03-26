@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<User> salvar(@Valid @RequestBody User user) throws ExceptionErros {
+	public ResponseEntity<User> salvar(@Valid @RequestBody User user,HttpServletRequest request) throws ExceptionErros {
+		user.setIp(request.getRemoteAddr());
+		request.getSession().setAttribute("usuarioLogado", user);
 		user = service.salvar(user);
 		return ResponseEntity.ok().body(user);
 		
