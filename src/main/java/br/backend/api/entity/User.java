@@ -12,6 +12,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,16 +50,21 @@ public class User implements Serializable {
 	private String email;
 	@NotNull
 	private String senha;
-	@ElementCollection
-	@CollectionTable(name="user_telefone", joinColumns = @JoinColumn(name="user_id"))
-	@Column(name="telefone")
-	private Set<String> telefones = new HashSet<>();
+	
+	//@ElementCollection
+	//@CollectionTable(name="user_telefone", joinColumns = @JoinColumn(name="user_id"))
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	private Set<Telefone> telefones = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Livro> livros = new ArrayList<Livro>();
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="perfil", nullable = false)
 	private PerfilEnum perfil;
+	
 	@Transient
 	private String ip;
 	
@@ -67,7 +73,7 @@ public class User implements Serializable {
 	}
 	
 	public User(Long id, @NotNull @Size(max = 50) String nome, @NotNull String email, @NotNull String senha,PerfilEnum perfil,
-			Set<String> telefones) {
+			Set<Telefone> telefones) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -100,10 +106,10 @@ public class User implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Set<String> getTelefones() {
+	public Set<Telefone> getTelefones() {
 		return telefones;
 	}
-	public void setTelefones(Set<String> telefones) {
+	public void setTelefones(Set<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 	public List<Livro> getLivros() {
