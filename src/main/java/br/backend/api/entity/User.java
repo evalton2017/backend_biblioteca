@@ -2,13 +2,10 @@ package br.backend.api.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -53,9 +49,8 @@ public class User implements Serializable {
 	
 	//@ElementCollection
 	//@CollectionTable(name="user_telefone", joinColumns = @JoinColumn(name="user_id"))
-	@JsonIgnore
-	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-	private Set<Telefone> telefones = new HashSet<>();
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Telefone> telefones = new ArrayList<Telefone>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
@@ -72,14 +67,12 @@ public class User implements Serializable {
 		
 	}
 	
-	public User(Long id, @NotNull @Size(max = 50) String nome, @NotNull String email, @NotNull String senha,PerfilEnum perfil,
-			Set<Telefone> telefones) {
+	public User(Long id, @NotNull @Size(max = 50) String nome, @NotNull String email, @NotNull String senha,PerfilEnum perfil) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.telefones = telefones;
 		this.perfil=perfil;
 	}
 	public Long getId() {
@@ -106,12 +99,15 @@ public class User implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Set<Telefone> getTelefones() {
+
+	public List<Telefone> getTelefones() {
 		return telefones;
 	}
-	public void setTelefones(Set<Telefone> telefones) {
+
+	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
+
 	public List<Livro> getLivros() {
 		return livros;
 	}
@@ -164,8 +160,11 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", telefones="
-				+ telefones + ", livros=" + livros + ", perfil=" + perfil + "]";
+				+ telefones + ", livros=" + livros + ", perfil=" + perfil + ", ip=" + ip + "]";
 	}
+
+
+	
 	
 	
 	

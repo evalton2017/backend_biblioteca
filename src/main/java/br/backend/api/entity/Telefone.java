@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.backend.api.enums.TipoTelefoneEnum;
 
 @Entity
@@ -37,6 +39,7 @@ public class Telefone implements Serializable {
 	private TipoTelefoneEnum tipo;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="user_id")
 	private User user;
 	

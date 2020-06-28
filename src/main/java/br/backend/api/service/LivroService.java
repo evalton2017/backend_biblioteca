@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.backend.api.entity.Livro;
-import br.backend.api.entity.User;
 import br.backend.api.repository.LivroRepository;
 
 @Service
