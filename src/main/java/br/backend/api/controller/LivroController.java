@@ -37,9 +37,9 @@ public class LivroController {
 		return ResponseEntity.ok().body(livros);
 	}
 	
-	@RequestMapping(value="/{titulo}",method=RequestMethod.GET)
-	public ResponseEntity<List<Livro>> buscarLivro(@PathVariable("titulo") String titulo){
-		List<Livro> livros = service.buscarLivros(titulo);		
+	@RequestMapping(value="/{pesquisa}",method=RequestMethod.GET)
+	public ResponseEntity<List<Livro>> buscarLivro(@PathVariable("pesquisa") String pesquisa){
+		List<Livro> livros = service.buscarLivros(pesquisa);		
 		return ResponseEntity.ok().body(livros);
 	}
 	

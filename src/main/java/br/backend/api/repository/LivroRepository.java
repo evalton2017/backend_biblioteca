@@ -12,7 +12,8 @@ import br.backend.api.entity.Livro;
 public interface LivroRepository extends JpaRepository<Livro, Long>{
 	
 	@Query(
-		value="Select * from Livro as l where l.titulo like %:titulo%",
+		value="Select * from Livro as l where lower(concat(l.titulo, l.autor)) like %:pesquisa%",
 		nativeQuery = true)
-	List<Livro> findByTitulo(@Param("titulo") String titulo);
+	List<Livro> findByTitulo(@Param("pesquisa") String pesquisa);
 }
+
