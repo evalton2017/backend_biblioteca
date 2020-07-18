@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.backend.api.entity.Livro;
-import br.backend.api.entity.User;
-import br.backend.api.repository.LivroRepository;
-import br.backend.api.repository.UserRepository;
-import br.backend.api.service.UserService;
+import br.backend.api.livro.Livro;
+import br.backend.api.livro.LivroRepository;
+import br.backend.api.user.User;
+import br.backend.api.user.UserRepository;
+import br.backend.api.user.UserService;
 
 @SpringBootTest
 public class LivroTest {
@@ -30,14 +30,11 @@ public class LivroTest {
 	
 	@Ignore
 	void salvar() {
-		Livro livro = new Livro("Java Fundamentos", "Desconhecido","2018", "Tecnologia da Informação", "Digital");
-		Livro livro1 = new Livro("Java 8", "Desconhecido","2020", "Tecnologia da Informação", "Digital");
-		Livro livro2 = new Livro("Java", "Desconhecido","2019", "Tecnologia da Informação", "Digital");
-		Livro livro3 = new Livro("PHP", "Desconhecido","2020", "Tecnologia da Informação", "Digital");
-		Livro livro4 = new Livro("Angular", "Desconhecido","2018", "Tecnologia da Informação", "Digital");
-		Livro livro5 = new Livro("React", "Desconhecido","2020", "Tecnologia da Informação", "Digital");
-		Livro livro6 = new Livro("Redes Basico", "Desconhecido","2020", "Redes", "Digital");
-		Livro livro7 = new Livro("Internet", "Desconhecido","2019", "Redes", "Digital");
+		Livro livro = new Livro("Java Fundamentos", "2018", "Tecnologia da Informação", "Digital");
+		Livro livro1 = new Livro("Java 8","2020", "Tecnologia da Informação", "Digital");
+		Livro livro2 = new Livro("Java", "2019", "Tecnologia da Informação", "Digital");
+		Livro livro3 = new Livro("PHP", "2020", "Tecnologia da Informação", "Digital");
+		Livro livro4 = new Livro("Angular", "2018", "Tecnologia da Informação", "Digital");
 		User bia = null;
 		User jose = null;
 		User maria = null;
@@ -54,12 +51,9 @@ public class LivroTest {
 		livro2.setUser(bia);
 		livro3.setUser(jose);
 		livro4.setUser(maria);
-		livro5.setUser(bia);
-		livro6.setUser(jose);
-		livro7.setUser(maria);
 		
 		List<Livro> livros = new ArrayList<>();
-		livros.addAll(Arrays.asList(livro,livro1,livro2,livro3,livro4,livro5,livro6,livro7));
+		livros.addAll(Arrays.asList(livro,livro1,livro2,livro3,livro4));
 		
 		livros.stream().forEach((l)->livroRepo.save(l));
 		

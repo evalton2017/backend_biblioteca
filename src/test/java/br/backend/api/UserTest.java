@@ -10,10 +10,10 @@ import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.backend.api.entity.Telefone;
-import br.backend.api.entity.User;
 import br.backend.api.enums.PerfilEnum;
-import br.backend.api.repository.UserRepository;
+import br.backend.api.user.User;
+import br.backend.api.user.UserRepository;
+import br.backend.api.user.telefone.Telefone;
 import br.backend.api.utils.SenhaUtil;
 
 @SpringBootTest

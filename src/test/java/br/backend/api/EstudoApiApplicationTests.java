@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.backend.api.entity.Livro;
-import br.backend.api.repository.LivroRepository;
-import br.backend.api.repository.UserRepository;
+import br.backend.api.livro.Livro;
+import br.backend.api.livro.LivroRepository;
+import br.backend.api.user.UserRepository;
 
 @SpringBootTest
 class EstudoApiApplicationTests {
@@ -19,7 +19,7 @@ class EstudoApiApplicationTests {
 	
 	@Test
 	void salvar() {
-		Livro livro = new Livro("Desenvolvimento Java", "Desconhecido","2020", "Tecnologia da Informação", "Digital");
+		Livro livro = new Livro("Desenvolvimento Java", "2020", "Tecnologia da Informação", "Digital");
 		livroRepo.save(livro);
 		
 		

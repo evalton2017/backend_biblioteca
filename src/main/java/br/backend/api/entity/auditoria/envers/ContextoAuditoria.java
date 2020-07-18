@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import br.backend.api.entity.User;
 import br.backend.api.enums.EnumTipoIntervencao;
+import br.backend.api.user.User;
 
  public class ContextoAuditoria {
 	

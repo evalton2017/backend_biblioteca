@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.envers.RevisionListener;
 
-import br.backend.api.entity.ControleAuditoria;
+import br.backend.api.controleAuditoria.ControleAuditoria;
 
 public class AuditoriaListener implements RevisionListener{
 	
